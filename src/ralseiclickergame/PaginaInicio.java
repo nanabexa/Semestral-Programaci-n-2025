@@ -14,10 +14,14 @@ public class PaginaInicio extends JFrame {
     private JButton continuarButton;
     private JLabel labelUniversidad;
     private ImageIcon logoFISCImagen = new ImageIcon("src/resources/logoFISC.png");
+    private Musica musica1;
 
     public PaginaInicio()
     {
-        setTitle("Clicker Ralsei");
+        musica1 = new Musica();
+        musica1.reproducirMusica("src/resources/School.wav");
+
+        setTitle("Semestral Programación");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(975, 720);
         setLocationRelativeTo(null);
@@ -31,6 +35,7 @@ public class PaginaInicio extends JFrame {
         logoFISC.setIcon(logoFISCImagen);
 
         nuevaPartidaButton.addActionListener(e -> {
+            musica1.detenerMusica(); // Detiene la música
             // aquí se define qué pasa cuando se hace clic en nueva partida
             VentanaJuego ventanaJuego = new VentanaJuego(false); // false significa nueva partida
             ventanaJuego.setVisible(true); // Hace visible la ventana del juego
@@ -39,6 +44,7 @@ public class PaginaInicio extends JFrame {
 
         // logica para el boton d3 continuar
         continuarButton.addActionListener(e -> {
+            musica1.detenerMusica(); // También la detiene
             // Crea una nueva instancia de VentanaJuego, indicando que SÍ es una partida cargada.
             VentanaJuego ventanaJuego = new VentanaJuego(true); // true significa cargar partida
             ventanaJuego.setVisible(true);

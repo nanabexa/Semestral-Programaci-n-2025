@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 public class VentanaJuego extends JFrame {
     public VentanaJuego(boolean cargarPartida) {
         // el booleano se usa para decidir si se debe crear una partida nueva (false) o cargar una existente (true)
-        setTitle("Clicker Ralsei");
+        setTitle("Semestral Programación I");
         setSize(975, 720);
         setResizable(false);
         setLocationRelativeTo(null);

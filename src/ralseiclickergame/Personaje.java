@@ -25,6 +25,7 @@ public class Personaje {
     public Personaje(Contador contador, JPanel panel) {
         this.contador = contador;
         this.panelClick = panel;
+        this.panelClick.setLayout(null); // Asegurar layout nulo
 
         ImageIcon ralesImagen = new ImageIcon("src/resources/ralsei.png");
         int anchoOriginal = ralesImagen.getIconWidth();
@@ -36,12 +37,11 @@ public class Personaje {
         imagen.setVerticalAlignment(SwingConstants.CENTER);
 
         boton = new JButton("");
-        boton.setBounds(imagen.getBounds());
+        boton.setBounds(130, 120, anchoOriginal, altoOriginal); // Solo sobre la imagen real
         boton.setContentAreaFilled(false);
         boton.setBorderPainted(false);
         boton.setFocusPainted(false);
 
-        // Evento de clic
         boton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -65,38 +65,52 @@ public class Personaje {
                     EfectoClick.mostrarEfecto(panelClick, botonEnPanel.x, botonEnPanel.y);
                 }
 
-                // ⬇️ Llamar efecto boing sobre la imagen
-                animarRebote(imagen);
+                animarRebote(dealmakerActivo ? dealmakerLabel : imagen);
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                // Rebote al pasar el cursor (opcional)
-                animarRebote(imagen);
+                animarRebote(dealmakerActivo ? dealmakerLabel : imagen);
             }
         });
 
-        // Cintas
-        ImageIcon ribbonIcon = new ImageIcon("src/resources/ribbon.png");
+        ImageIcon ribbonIcon = new ImageIcon("src/resources/WhiteRibbon.png");
         for (int i = 0; i < 10; i++) {
             JLabel ribbon = new JLabel(ribbonIcon);
             ribbon.setBounds(130 - i * 10, 110 - i * 25, ribbonIcon.getIconWidth(), ribbonIcon.getIconHeight());
             ribbon.setVisible(false);
             ribbons.add(ribbon);
+            panelClick.add(ribbon);
         }
 
         // Powerups
         jevilstailLabel = new JLabel(new ImageIcon("src/resources/jevilstail.png"));
-        jevilstailLabel.setBounds(365, 330, 60, 60);
+        jevilstailLabel.setBounds(285, 200, anchoOriginal, altoOriginal);
         jevilstailLabel.setVisible(false);
+        panelClick.add(jevilstailLabel); // Al fondo
 
-        dealmakerLabel = new JLabel(new ImageIcon("src/resources/ralseidealmaker.png"));
-        dealmakerLabel.setBounds(130, 120, 256, 256);
+        // Dealmaker visual
+        dealmakerLabel = new JLabel();
+        dealmakerLabel.setBounds(130 - anchoOriginal / 2, 120 - altoOriginal / 2, anchoOriginal * 2, altoOriginal * 2);
+        imagen.setHorizontalAlignment(SwingConstants.CENTER);
+        imagen.setVerticalAlignment(SwingConstants.CENTER);
         dealmakerLabel.setVisible(false);
+        panelClick.setLayout(null);
+
+        panelClick.add(imagen);
+        panelClick.add(boton);
+
+        // Asegurar Z-order correcto
+        panelClick.setComponentZOrder(dealmakerLabel, 0); // Al frente
+        panelClick.setComponentZOrder(boton, 1);          // Encima si es necesario
+        panelClick.setComponentZOrder(imagen, 2);         // Fondo
+
+        panelClick.revalidate();
+        panelClick.repaint();
     }
 
     private void animarRebote(JLabel label) {
-        if (animandoRebote) return; // Evitar múltiples animaciones a la vez
+        if (animandoRebote) return;
         animandoRebote = true;
 
         final int pasos = 6;
@@ -104,6 +118,8 @@ public class Personaje {
         final double escalaMax = 1.1;
 
         ImageIcon originalIcon = (ImageIcon) label.getIcon();
+        if (originalIcon == null) return;
+
         int originalWidth = originalIcon.getIconWidth();
         int originalHeight = originalIcon.getIconHeight();
 
@@ -143,7 +159,6 @@ public class Personaje {
         timer.start();
     }
 
-    // Resto de métodos públicos
     public void agregarRibbon() {
         if (ribbonCount < 10) {
             ribbons.get(ribbonCount).setVisible(true);
@@ -157,12 +172,39 @@ public class Personaje {
     }
 
     public void activarDealmaker() {
-        dealmakerActivo = true;
-        dealmakerLabel.setVisible(true);
+        if (!dealmakerActivo) {
+            dealmakerActivo = true;
+
+            ImageIcon dealmakerIcon = new ImageIcon("src/resources/ralseidealmaker.png");
+            if (dealmakerIcon.getIconWidth() == 0) {
+                System.out.println("⚠ No se pudo cargar ralseidealmaker.png");
+                return;
+            }
+
+            dealmakerLabel.setIcon(dealmakerIcon);
+
+            // 👇 Igualamos su posición y tamaño a la de la imagen original
+            dealmakerLabel.setBounds(imagen.getBounds());
+
+            dealmakerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            dealmakerLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+            dealmakerLabel.setVisible(true);
+            imagen.setVisible(false);
+            animarRebote(dealmakerLabel);
+
+            panelClick.revalidate();
+            panelClick.repaint();
+        }
     }
+
 
     public void setInfoLabel(JLabel info) {
         this.info1 = info;
+    }
+
+    public int getRibbonCount() {
+        return ribbonCount;
     }
 
     public JLabel getLabelImagen() { return imagen; }

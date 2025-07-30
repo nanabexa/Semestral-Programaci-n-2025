@@ -6,11 +6,13 @@ import java.io.File;
 import javax.sound.sampled.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 
 public class EfectoClick {
 
     public static void mostrarEfecto(JPanel panel, int x, int y) {
         reproducirSonido("src/resources/RalseiDialogue.wav");
+        Random rand = new Random();
 
         int numCorazones = 3;
         int distancia = 40; // hasta dónde se moverá
@@ -22,7 +24,7 @@ public class EfectoClick {
                 {1, -1}
         };
 
-        for (int i = 0; i < numCorazones; i++) {
+        for (int i = 0; i < rand.nextInt(1,4); i++) {
             int dx = direcciones[i][0];
             int dy = direcciones[i][1];
 

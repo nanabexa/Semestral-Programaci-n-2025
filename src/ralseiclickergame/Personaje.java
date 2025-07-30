@@ -84,10 +84,12 @@ public class Personaje {
         }
 
         // Powerups
+        // Jevilstail visual
         jevilstailLabel = new JLabel(new ImageIcon("src/resources/jevilstail.png"));
-        jevilstailLabel.setBounds(285, 200, anchoOriginal, altoOriginal);
+        jevilstailLabel.setBounds(275, 200, anchoOriginal, altoOriginal);
         jevilstailLabel.setVisible(false);
         panelClick.add(jevilstailLabel); // Al fondo
+        panelClick.setComponentZOrder(jevilstailLabel, 5);
 
         // Dealmaker visual
         dealmakerLabel = new JLabel();
@@ -101,11 +103,38 @@ public class Personaje {
         panelClick.add(boton);
 
         // Asegurar Z-order correcto
-        panelClick.setComponentZOrder(dealmakerLabel, 0); // Al frente
-        panelClick.setComponentZOrder(boton, 1);          // Encima si es necesario
-        panelClick.setComponentZOrder(imagen, 2);         // Fondo
+        panelClick.setComponentZOrder(dealmakerLabel, 1); // Al frente
+        panelClick.setComponentZOrder(boton, 1);// Encima si es necesario
+        panelClick.setComponentZOrder(imagen, 2);// Fondo
 
-        panelClick.revalidate();
+        render();
+    }
+
+    public void render(){
+        panelClick.remove(imagen);
+        panelClick.remove(jevilstailLabel);
+        panelClick.remove(dealmakerLabel);
+        for (int i = 0; i < 10; i++) {
+            panelClick.remove(ribbons.get(i));
+        }
+
+        if (isDealmakerActivo()) {
+            panelClick.add(dealmakerLabel);
+            panelClick.setComponentZOrder(dealmakerLabel, 1);
+        }
+        panelClick.add(imagen);
+        panelClick.setComponentZOrder(imagen, 1);
+        if (isJevilstailActivo()) {
+            panelClick.add(jevilstailLabel);
+            panelClick.setComponentZOrder(jevilstailLabel, 3);
+        }
+        if(ribbonCount > 0){
+            System.out.println("ribboneado");
+            for (int i = 0; i < 10; i++) {
+                panelClick.add(ribbons.get(i));
+                panelClick.setComponentZOrder(ribbons.get(i), 1);
+            }
+        }
         panelClick.repaint();
     }
 
@@ -114,8 +143,8 @@ public class Personaje {
         animandoRebote = true;
 
         final int pasos = 6;
-        final int delay = 20;
-        final double escalaMax = 1.1;
+        final int delay = 0;
+        final double escalaMax = 0.95;
 
         ImageIcon originalIcon = (ImageIcon) label.getIcon();
         if (originalIcon == null) return;

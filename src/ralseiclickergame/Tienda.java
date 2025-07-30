@@ -1,7 +1,6 @@
 package ralseiclickergame;
 
 import javax.swing.*;
-import java.awt.event.*;
 
 public class Tienda {
     private JLabel titulo;
@@ -12,6 +11,8 @@ public class Tienda {
 
     private Contador contador;
     private Personaje personaje;
+
+
 
     public Tienda(Contador contador, Personaje personaje) {
         this.contador = contador;
@@ -32,6 +33,8 @@ public class Tienda {
         item1Boton = crearBoton(item1Label.getBounds(), () -> {
             if (contador.gastar(50)) {
                 personaje.agregarRibbon();
+                personaje.render();
+                EfectoClick.reproducirSonido("src/resources/ItemGetSFX.wav");
                 info1.setText("* Un lindo lazo blanco");
                 info2.setText("(+1 punto por clic)");
 
@@ -41,7 +44,7 @@ public class Tienda {
                     item1Label.setVisible(false);
                 }
             }
-        }, "Este lazo blanco es UNA ARMADURA","(+1 punto por clic)");
+        }, "Un lindo lazo blanco","(+1 punto por clic)");
 
         item2Label = new JLabel("Jevilstail  200 pts");
         item2Label.setBounds(640, 340, 300, 50);
@@ -53,6 +56,8 @@ public class Tienda {
                 item2Label.setVisible(false); // 👈 ocultar también el texto
                 info1.setText("* Una cola con forma de J");
                 info2.setText("(chance de x4 pts/clic)");
+                personaje.render();
+                EfectoClick.reproducirSonido("src/resources/JevilstailGetSFX.wav");
             }
         }, "* Una cola con forma de J", "(chance de x4 pts/clic)");
 
@@ -67,9 +72,11 @@ public class Tienda {
                 item3Label.setVisible(false); //  ocultar también el texto
                 info1.setText("* Un estiloso par de lentes");
                 info2.setText("(x2 puntos por clic)");
+                personaje.render();
+                EfectoClick.reproducirSonido("src/resources/DealmakerGetSFX.wav");
             }
         }, "* Un estiloso par de lentes", "(x2 puntos por clic)");
-        }
+    }
 
     private JButton crearBoton(java.awt.Rectangle bounds, Runnable onClick, String hoverText1, String hoverText2) {
         JButton b = new JButton("");

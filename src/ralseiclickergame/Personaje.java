@@ -92,8 +92,10 @@ public class Personaje {
         // Dealmaker visual
         dealmakerLabel = new JLabel();
         dealmakerLabel.setBounds(130 - anchoOriginal / 2, 120 - altoOriginal / 2, anchoOriginal * 2, altoOriginal * 2);
+        imagen.setHorizontalAlignment(SwingConstants.CENTER);
+        imagen.setVerticalAlignment(SwingConstants.CENTER);
         dealmakerLabel.setVisible(false);
-        panelClick.add(dealmakerLabel);
+        panelClick.setLayout(null);
 
         panelClick.add(imagen);
         panelClick.add(boton);
@@ -170,22 +172,32 @@ public class Personaje {
     }
 
     public void activarDealmaker() {
-        dealmakerActivo = true;
+        if (!dealmakerActivo) {
+            dealmakerActivo = true;
 
-        ImageIcon dealmakerIcon = new ImageIcon("src/resources/ralseidealmaker.png");
-        if (dealmakerIcon.getIconWidth() == 0) {
-            System.out.println("⚠ No se pudo cargar ralseidealmaker.png");
-            return;
+            ImageIcon dealmakerIcon = new ImageIcon("src/resources/ralseidealmaker.png");
+            if (dealmakerIcon.getIconWidth() == 0) {
+                System.out.println("⚠ No se pudo cargar ralseidealmaker.png");
+                return;
+            }
+
+            dealmakerLabel.setIcon(dealmakerIcon);
+
+            // 👇 Igualamos su posición y tamaño a la de la imagen original
+            dealmakerLabel.setBounds(imagen.getBounds());
+
+            dealmakerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            dealmakerLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+            dealmakerLabel.setVisible(true);
+            imagen.setVisible(false);
+            animarRebote(dealmakerLabel);
+
+            panelClick.revalidate();
+            panelClick.repaint();
         }
-
-        dealmakerLabel.setIcon(dealmakerIcon);
-        dealmakerLabel.setVisible(true);
-        imagen.setVisible(false);
-        animarRebote(dealmakerLabel);
-
-        panelClick.revalidate();
-        panelClick.repaint();
     }
+
 
     public void setInfoLabel(JLabel info) {
         this.info1 = info;

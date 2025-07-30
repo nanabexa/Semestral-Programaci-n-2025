@@ -95,14 +95,10 @@ public class PanelJuego extends JPanel {
         add(fondo);
         setComponentZOrder(fondo, getComponentCount() - 1);
 
-        // Los índices más bajos se dibujan más cerca del frente.
         setComponentZOrder(personaje.getBoton(), 0);
 
-        // Mejoras y moños encima del personaje base
         setComponentZOrder(personaje.getDealmakerLabel(), 1);
 
-        // CORRECCIÓN: Damos un índice Z único a cada moño para evitar conflictos
-        // y aseguramos que todos estén encima del personaje.
         for (int i = 0; i < 10; i++) {
             setComponentZOrder(personaje.getRibbons().get(i), 2 + i);
         }
@@ -110,7 +106,6 @@ public class PanelJuego extends JPanel {
         // La imagen principal del personaje
         setComponentZOrder(personaje.getLabelImagen(), 12);
 
-        // La cola se dibuja detrás del personaje
         setComponentZOrder(personaje.getJevilstailLabel(), 13);
 
         // Elementos de la UI y del fondo

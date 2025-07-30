@@ -45,7 +45,7 @@ public class PanelJuego extends JPanel {
         personaje = new Personaje(contador,this);
         tienda = new Tienda(contador, personaje);
 
-        titulo = new JLabel("RALSEI CLICKER GAME ");
+        titulo = new JLabel("RALSEI CLICKER");
         titulo.setBounds(330, 20, 500, 70);
         titulo.setFont(fontGrande);
         titulo.setForeground(Color.WHITE);

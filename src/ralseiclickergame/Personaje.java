@@ -46,7 +46,7 @@ public class Personaje {
             @Override
             public void mousePressed(MouseEvent e) {
                 Random rand = new Random();
-                int puntosGanados = 100 + ribbonCount;
+                int puntosGanados = 1 + ribbonCount;
                 if (jevilstailActivo && rand.nextInt(10) == 1) {
                     puntosGanados *= 4;
                 }

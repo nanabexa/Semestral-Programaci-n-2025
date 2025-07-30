@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ralseiclickergame.PaginaInicio">
+  <grid id="27dc6" binding="panelPaginaInicio" layout-manager="GridLayoutManager" row-count="13" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="45" left="45" bottom="45" right="45"/>
+    <constraints>
+      <xy x="20" y="20" width="902" height="517"/>
+    </constraints>
+    <properties>
+      <background color="-15791079"/>
+      <font/>
+    </properties>
+    <border type="none">
+      <font/>
+      <title-color color="-2104859"/>
+    </border>
+    <children>
+      <component id="81124" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="36"/>
+          <foreground color="-1"/>
+          <text value="Universidad Tecnológica de Panamá"/>
+        </properties>
+      </component>
+      <component id="5415c" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="24"/>
+          <foreground color="-1"/>
+          <text value="Facultad de Ingeniería de Sistemas Computacionales"/>
+        </properties>
+      </component>
+      <component id="2666b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Licenciatura en Ingeniería de Software"/>
+        </properties>
+      </component>
+      <component id="ea837" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Profesor: Rodrigo Yángüez"/>
+        </properties>
+      </component>
+      <vspacer id="a84c5">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="4479e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Grupo: 1SF121"/>
+        </properties>
+      </component>
+      <component id="f352a" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Integrantes:"/>
+        </properties>
+      </component>
+      <component id="40045" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Gabriel Cedeño 8-985-584"/>
+        </properties>
+      </component>
+      <component id="dfb86" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Kevin Pan 8-1030-1204"/>
+        </properties>
+      </component>
+      <component id="9acda" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Viviana Nieto 8-1028-322"/>
+        </properties>
+      </component>
+      <component id="a24f7" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Juan Valeirao 8-1031-204"/>
+        </properties>
+      </component>
+      <vspacer id="7a7b5">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="59bdd" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <foreground color="-1"/>
+          <text value="Fecha de entrega: Miércoles 30 de julio de 2025"/>
+        </properties>
+      </component>
+      <component id="8247e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="9459d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

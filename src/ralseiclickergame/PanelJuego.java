@@ -2,6 +2,8 @@ package ralseiclickergame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 public class PanelJuego extends JPanel {
@@ -13,7 +15,7 @@ public class PanelJuego extends JPanel {
     private JLabel borde;
     private JLabel titulo;
 
-    public PanelJuego() {
+    public PanelJuego(boolean cargarPartida) {
         setLayout(null);
 
         Font font = null;
@@ -44,6 +46,25 @@ public class PanelJuego extends JPanel {
         contador = new Contador();
         personaje = new Personaje(contador,this);
         tienda = new Tienda(contador, personaje);
+
+        // Lógica de carga de partida
+        if (cargarPartida) {
+            Partida partida = GuardarProgreso.cargarPartida();
+            if (partida != null) {
+                contador.setPuntos(partida.puntos);
+                // Restaurar las mejoras del personaje
+                for (int i = 0; i < partida.ribbonCount; i++) {
+                    personaje.agregarRibbon();
+                }
+                if (partida.jevilstailActivo) {
+                    personaje.activarJevilstail();
+                }
+                if (partida.dealmakerActivo) {
+                    personaje.activarDealmaker();
+                }
+            }
+        }
+
 
         titulo = new JLabel("Ralsei Clicker");
         titulo.setBounds(330, 20, 500, 70);
@@ -83,5 +104,13 @@ public class PanelJuego extends JPanel {
         fondo.setBounds(0, 0, 975, 720);
         add(fondo);
         setComponentZOrder(fondo, getComponentCount() - 1);
+    }
+
+    public Contador getContador() {
+        return contador;
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
     }
 }

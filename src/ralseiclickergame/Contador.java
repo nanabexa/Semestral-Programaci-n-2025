@@ -32,4 +32,9 @@ public class Contador {
     public JLabel getLabelPuntos() { return labelPuntos; }
     public JLabel getLabelValor() { return labelValor; }
     public int getPuntos() { return puntos; }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+        labelValor.setText(String.valueOf(puntos)); // Actualiza la etiqueta visualmente
+    }
 }

@@ -172,4 +172,8 @@ public class Personaje {
     public JLabel getDealmakerLabel() { return dealmakerLabel; }
     public boolean isJevilstailActivo() { return jevilstailActivo; }
     public boolean isDealmakerActivo() { return dealmakerActivo; }
+
+    public int getRibbonCount() {
+        return ribbonCount;
+    }
 }

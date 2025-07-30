@@ -30,8 +30,30 @@ public class PaginaInicio extends JFrame {
         logoFISCImagen = new ImageIcon( logoFISCImagen.getImage().getScaledInstance(108, 108, Image.SCALE_SMOOTH) );
         logoFISC.setIcon(logoFISCImagen);
 
+        nuevaPartidaButton.addActionListener(e -> {
+            // aquí se define qué pasa cuando se hace clic en nueva partida
+            VentanaJuego ventanaJuego = new VentanaJuego(false); // false significa nueva partida
+            ventanaJuego.setVisible(true); // Hace visible la ventana del juego
+            this.dispose(); // cierra la ventana actual (PaginaInicio)
+        });
+
+        // logica para el boton d3 continuar
+        continuarButton.addActionListener(e -> {
+            // Crea una nueva instancia de VentanaJuego, indicando que SÍ es una partida cargada.
+            VentanaJuego ventanaJuego = new VentanaJuego(true); // true significa cargar partida
+            ventanaJuego.setVisible(true);
+            this.dispose();
+        });
+
 
         try {
+            File archivoPartida = new File("partida.ser"); // La ruta o nombre de tu archivo de guardado
+            if (!archivoPartida.exists()) {
+                continuarButton.setEnabled(false); // Deshabilita el botón
+                continuarButton.setText("Continuar (No hay partida)");
+                continuarButton.setForeground(Color.GRAY);
+            }
+
             File fuenteEstilo = new File("src/resources/determination.ttf");
             Font fuente = Font.createFont(Font.TRUETYPE_FONT, fuenteEstilo).deriveFont(30f);
             this.asignarFuenteParaLabelenPanel(this.panelPaginaInicio, fuente);

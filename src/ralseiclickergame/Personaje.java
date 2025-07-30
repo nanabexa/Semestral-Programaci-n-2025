@@ -110,32 +110,24 @@ public class Personaje {
         render();
     }
 
+    // Se cambio la lógica de añadir/remover y setComponentZOrder() para evitar IllegalComponentPositionException.
     public void render(){
-        panelClick.remove(imagen);
-        panelClick.remove(jevilstailLabel);
-        panelClick.remove(dealmakerLabel);
         for (int i = 0; i < 10; i++) {
-            panelClick.remove(ribbons.get(i));
-        }
-
-        if (isDealmakerActivo()) {
-            panelClick.add(dealmakerLabel);
-            panelClick.setComponentZOrder(dealmakerLabel, 1);
-        }
-        panelClick.add(imagen);
-        panelClick.setComponentZOrder(imagen, 1);
-        if (isJevilstailActivo()) {
-            panelClick.add(jevilstailLabel);
-            panelClick.setComponentZOrder(jevilstailLabel, 3);
-        }
-        if(ribbonCount > 0){
-            System.out.println("ribboneado");
-            for (int i = 0; i < 10; i++) {
-                panelClick.add(ribbons.get(i));
-                panelClick.setComponentZOrder(ribbons.get(i), 1);
+            if (i < ribbonCount) {
+                ribbons.get(i).setVisible(true);
+            } else {
+                ribbons.get(i).setVisible(false);
             }
         }
-        panelClick.repaint();
+
+        imagen.setVisible(!dealmakerActivo);
+        jevilstailLabel.setVisible(jevilstailActivo);
+        dealmakerLabel.setVisible(dealmakerActivo);
+
+        if (panelClick != null) {
+            panelClick.revalidate();
+            panelClick.repaint();
+        }
     }
 
     private void animarRebote(JLabel label) {
@@ -236,6 +228,19 @@ public class Personaje {
         return ribbonCount;
     }
 
+    public void setRibbonCount(int count) {
+        this.ribbonCount = count;
+        // La visibilidad de los ribbons se actualizará en render()
+    }
+
+    public void setJevilstailActivo(boolean activo) {
+        this.jevilstailActivo = activo;
+    }
+
+    public void setDealmakerActivo(boolean activo) {
+        this.dealmakerActivo = activo;
+    }
+
     public JLabel getLabelImagen() { return imagen; }
     public JButton getBoton() { return boton; }
     public List<JLabel> getRibbons() { return ribbons; }
@@ -243,4 +248,5 @@ public class Personaje {
     public JLabel getDealmakerLabel() { return dealmakerLabel; }
     public boolean isJevilstailActivo() { return jevilstailActivo; }
     public boolean isDealmakerActivo() { return dealmakerActivo; }
+
 }

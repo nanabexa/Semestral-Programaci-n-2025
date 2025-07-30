@@ -27,39 +27,49 @@ public class Tienda {
         info2 = new JLabel("");
         info2.setBounds(70, 570, 500, 50);
 
-        item1Label = new JLabel("Ribbon      50 pt");
+        item1Label = new JLabel("Lazo Blanco  50 pts ");
         item1Label.setBounds(640, 270, 300, 50);
         item1Boton = crearBoton(item1Label.getBounds(), () -> {
             if (contador.gastar(50)) {
                 personaje.agregarRibbon();
-                info1.setText("* Un lindo moño rosado");
+                info1.setText("* Un lindo lazo blanco");
                 info2.setText("(+1 punto por clic)");
-            }
-        }, "* Un lindo moño rosado", "(+1 punto por clic)");
 
-        item2Label = new JLabel("Jevilstail  200 pt");
+                // Ocultar el botón y el texto si ya se tienen 10 lazos
+                if (personaje.getRibbonCount() == 10) {
+                    item1Boton.setVisible(false);
+                    item1Label.setVisible(false);
+                }
+            }
+        }, "Este lazo blanco es UNA ARMADURA","(+1 punto por clic)");
+
+        item2Label = new JLabel("Jevilstail  200 pts");
         item2Label.setBounds(640, 340, 300, 50);
         item2Boton = crearBoton(item2Label.getBounds(), () -> {
             if (contador.gastar(200)) {
                 personaje.activarJevilstail();
                 item2Boton.setEnabled(false);
                 item2Boton.setVisible(false);
+                item2Label.setVisible(false); // 👈 ocultar también el texto
                 info1.setText("* Una cola con forma de J");
                 info2.setText("(chance de x4 pts/clic)");
             }
         }, "* Una cola con forma de J", "(chance de x4 pts/clic)");
 
-        item3Label = new JLabel("Dealmaker  1000 pt");
+
+        item3Label = new JLabel("Dealmaker 1000 pts");
         item3Label.setBounds(640, 410, 300, 50);
         item3Boton = crearBoton(item3Label.getBounds(), () -> {
             if (contador.gastar(1000)) {
                 personaje.activarDealmaker();
                 item3Boton.setEnabled(false);
+                item3Boton.setVisible(false);
+                item3Label.setVisible(false); //  ocultar también el texto
                 info1.setText("* Un estiloso par de lentes");
                 info2.setText("(x2 puntos por clic)");
             }
         }, "* Un estiloso par de lentes", "(x2 puntos por clic)");
-    }
+        }
 
     private JButton crearBoton(java.awt.Rectangle bounds, Runnable onClick, String hoverText1, String hoverText2) {
         JButton b = new JButton("");
@@ -80,6 +90,7 @@ public class Tienda {
         });
         return b;
     }
+
 
     public JLabel getTitulo() { return titulo; }
     public JLabel getInfoLabel1() { return info1; }

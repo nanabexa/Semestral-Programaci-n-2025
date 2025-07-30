@@ -30,7 +30,7 @@ public class PanelJuego extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
             font = new Font("Arial", Font.BOLD, 40); // fallback
-            fontGrande = font.deriveFont(Font.PLAIN, 60);
+            fontGrande = font.deriveFont(Font.PLAIN, 75);
         }
 
         try {
@@ -45,7 +45,7 @@ public class PanelJuego extends JPanel {
         personaje = new Personaje(contador,this);
         tienda = new Tienda(contador, personaje);
 
-        titulo = new JLabel("Ralsei Clicker");
+        titulo = new JLabel("RALSEI CLICKER GAME ");
         titulo.setBounds(330, 20, 500, 70);
         titulo.setFont(fontGrande);
         titulo.setForeground(Color.WHITE);

@@ -46,7 +46,7 @@ public class Personaje {
             @Override
             public void mousePressed(MouseEvent e) {
                 Random rand = new Random();
-                int puntosGanados = 1 + ribbonCount;
+                int puntosGanados = 100 + ribbonCount;
                 if (jevilstailActivo && rand.nextInt(10) == 1) {
                     puntosGanados *= 4;
                 }
@@ -111,22 +111,31 @@ public class Personaje {
     }
 
     // Se cambio la lógica de añadir/remover y setComponentZOrder() para evitar IllegalComponentPositionException.
-    public void render(){
+
+    public void render() {
+        panelClick.remove(imagen);
+        panelClick.remove(jevilstailLabel);
+        panelClick.remove(dealmakerLabel);
         for (int i = 0; i < 10; i++) {
-            if (i < ribbonCount) {
-                ribbons.get(i).setVisible(true);
-            } else {
-                ribbons.get(i).setVisible(false);
-            }
+            panelClick.remove(ribbons.get(i));
         }
 
-        imagen.setVisible(!dealmakerActivo);
-        jevilstailLabel.setVisible(jevilstailActivo);
-        dealmakerLabel.setVisible(dealmakerActivo);
-
-        if (panelClick != null) {
-            panelClick.revalidate();
-            panelClick.repaint();
+        if (isDealmakerActivo()) {
+            panelClick.add(dealmakerLabel);
+            panelClick.setComponentZOrder(dealmakerLabel, 1);
+        }
+        panelClick.add(imagen);
+        panelClick.setComponentZOrder(imagen, 1);
+        if (isJevilstailActivo()) {
+            panelClick.add(jevilstailLabel);
+            panelClick.setComponentZOrder(jevilstailLabel, 3);
+        }
+        if (ribbonCount > 0) {
+            System.out.println("ribboneado");
+            for (int i = 0; i < 10; i++) {
+                panelClick.add(ribbons.get(i));
+                panelClick.setComponentZOrder(ribbons.get(i), 1);
+            }
         }
     }
 

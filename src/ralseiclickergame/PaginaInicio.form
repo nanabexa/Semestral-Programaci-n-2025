@@ -24,7 +24,7 @@
           <text value="Universidad Tecnológica de Panamá"/>
         </properties>
       </component>
-      <component id="5415c" class="javax.swing.JLabel" binding="labelFacultad">
+      <component id="5415c" class="javax.swing.JLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

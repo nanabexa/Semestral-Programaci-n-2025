@@ -13,7 +13,6 @@ public class PaginaInicio extends JFrame {
     private JButton nuevaPartidaButton;
     private JButton continuarButton;
     private JLabel labelUniversidad;
-    private JLabel labelFacultad;
     private ImageIcon logoFISCImagen = new ImageIcon("src/resources/logoFISC.png");
 
     public PaginaInicio()
@@ -30,6 +29,31 @@ public class PaginaInicio extends JFrame {
         logoUTP.setIcon(logoUTPImagen);
         logoFISCImagen = new ImageIcon( logoFISCImagen.getImage().getScaledInstance(108, 108, Image.SCALE_SMOOTH) );
         logoFISC.setIcon(logoFISCImagen);
+
+
+        try {
+            File fuenteEstilo = new File("src/resources/determination.ttf");
+            Font fuente = Font.createFont(Font.TRUETYPE_FONT, fuenteEstilo).deriveFont(30f);
+            this.asignarFuenteParaLabelenPanel(this.panelPaginaInicio, fuente);
+
+            this.nuevaPartidaButton.setFont(fuente);
+            this.continuarButton.setFont(fuente);
+
+            // Ahora para tamaño en especifico
+            this.labelUniversidad.setFont(this.labelUniversidad.getFont().deriveFont(45f));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        this.setContentPane(this.panelPaginaInicio);
+
+        // Los siguientes cambios de tamaño es un apaño para un bug raro que pone blanco la ventana y se arregla si se "refresca"
+        // cambiando el borde un poco, Verdaderamente los apaños de un game developer JAJAJAJJA XD
+        // ¿Es estupido? Sí, ¿pero funciona?, entonces no es estupido xD
+        this.setSize(975, 723);
+        this.setSize(975, 720);
     }
 
 
@@ -42,33 +66,5 @@ public class PaginaInicio extends JFrame {
                 asignarFuenteParaLabelenPanel((Container) comp, font);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        PaginaInicio paginaInicio = new PaginaInicio();
-
-        try {
-            File fuenteEstilo = new File("src/resources/determination.ttf");
-            Font fuente = Font.createFont(Font.TRUETYPE_FONT, fuenteEstilo).deriveFont(30f);
-            paginaInicio.asignarFuenteParaLabelenPanel(paginaInicio.panelPaginaInicio, fuente);
-
-            paginaInicio.nuevaPartidaButton.setFont(fuente);
-            paginaInicio.continuarButton.setFont(fuente);
-
-            // Ahora para tamaño en especifico
-            paginaInicio.labelUniversidad.setFont(paginaInicio.labelUniversidad.getFont().deriveFont(45f));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        paginaInicio.setContentPane(paginaInicio.panelPaginaInicio);
-
-        // Los siguientes cambios de tamaño es un apaño para un bug raro que pone blanco la ventana y se arregla si se "refresca"
-        // cambiando el borde un poco, Verdaderamente los apaños de un game developer JAJAJAJJA XD
-        // ¿Es estupido? Sí, ¿pero funciona?, entonces no es estupido xD
-        paginaInicio.setSize(975, 723);
-        paginaInicio.setSize(975, 720);
     }
 }
